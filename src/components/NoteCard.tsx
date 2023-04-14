@@ -10,8 +10,6 @@ type Props = {
 };
 
 function NoteCard({ note, onDelete, loading }: Props) {
-  const [collapsed, setCollapsed] = useState(false);
-
   const title = note.topic.title;
 
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -22,26 +20,18 @@ function NoteCard({ note, onDelete, loading }: Props) {
   };
 
   return (
-    <div className="card mb-5 w-full border">
-      <div
-        className={`${
-          collapsed ? "collapse-open" : "collapse-close"
-        } card-body`}
-      >
-        <div
-          onClick={() => setCollapsed((prev) => !prev)}
-          className="collapse-title text-neutral"
-        >
-          {title}
-        </div>
-        <div className="collapse-content bg-slate-100 text-slate-900  ">
+    <div className="card mb-5 w-full border p-5">
+      <div className="rounded-box collapse bg-base-100">
+        <input type="checkbox" className="peer" />
+        <div className="collapse-title text-xl font-medium">{title}</div>
+        <div className="collapse-content">
           <p>{note.content}</p>
         </div>
-        <div className="card-actions justify-end">
-          <button onClick={handleDelete} className="btn-error btn">
-            {loading ? "Loading..." : "Delete"}
-          </button>
-        </div>
+      </div>
+      <div className="card-actions justify-end">
+        <button onClick={handleDelete} className="btn-error btn">
+          {loading ? "Loading..." : "Delete"}
+        </button>
       </div>
     </div>
   );

@@ -13,9 +13,11 @@ type Topic = RouterOutputs["topic"]["get"][number];
 const AllTopics = ({
   topics,
   handleTopicChange,
+  activeTopic,
 }: {
   topics: Topic[];
   handleTopicChange: ({ topic }: { topic: Topic }) => void;
+  activeTopic: Topic;
 }) => {
   if (!topics || !topics.length) return <p>No topic yet</p>;
 
@@ -28,7 +30,9 @@ const AllTopics = ({
               topic: t,
             })
           }
-          className="btn-ghost btn"
+          className={`${
+            t.id === activeTopic.id ? "btn-info" : "btn-ghost"
+          } btn`}
           key={t.id}
         >
           {t.title}
@@ -125,6 +129,7 @@ const Home: NextPage = () => {
               setCurrTopic(topic);
             }}
             topics={topics}
+            activeTopic={currTopic ?? topics[0]!}
           />
         )}
       </div>

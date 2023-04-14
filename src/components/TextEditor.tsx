@@ -22,7 +22,7 @@ function TextEditor({ onSave }: Props) {
       <CodeMirror
         value={input}
         width="100%"
-        height="60vh"
+        height="45vh"
         extensions={[
           markdown({ base: markdownLanguage, codeLanguages: languages }),
         ]}
@@ -31,7 +31,7 @@ function TextEditor({ onSave }: Props) {
       <button
         disabled={!input}
         onClick={handleCreate}
-        className="btn-success btn"
+        className="btn-success btn mt-5"
       >
         Create
       </button>
